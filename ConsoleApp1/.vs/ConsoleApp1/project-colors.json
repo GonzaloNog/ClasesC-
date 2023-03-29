@@ -8,9 +8,14 @@
     },
     "f2fdedfb-fddb-4155-b075-aa0dfa03dc57": {
       "ProjectGuid": "f2fdedfb-fddb-4155-b075-aa0dfa03dc57",
-      "DisplayName": "ConsoleApp2",
+      "DisplayName": "Clase2",
       "ColorIndex": 1
+    },
+    "4abcb0f6-d388-4a6e-81a6-da0f72734920": {
+      "ProjectGuid": "4abcb0f6-d388-4a6e-81a6-da0f72734920",
+      "DisplayName": "Clase3",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 3
 }
