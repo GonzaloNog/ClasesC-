@@ -17,8 +17,8 @@ namespace MyApp
             int indexRaza = 0;
 
 
-            indexRaza = RegistroClase();
-            name = RegistroName();
+            RegistroClase(ref indexRaza);
+            RegistroName(ref name);
 
             Console.WriteLine(name);
             Console.WriteLine(raza[indexRaza]);
@@ -28,34 +28,32 @@ namespace MyApp
             }
         }
 
-        static string RegistroName()
+        static void RegistroName(ref string name)
         {
             Console.WriteLine("Ingrese tu nombre de usuario");
-            string name = Console.ReadLine();
-            return name;
+            name = Console.ReadLine();
         }
-        static int RegistroClase()
+        static void RegistroClase(ref int indexRaza)
         {
             Console.WriteLine("Elegi una de las siguientes clases: 1-Mago 2-Peleador 3-Elfo 4-Enano");
             int a = Convert.ToInt32(Console.ReadLine());
             switch(a)
             {
                 case 1:
-                    return 0;
+                    indexRaza = 0;
                     break;
                 case 2:
-                    return 1;
+                    indexRaza = 1;
                     break;
                 case 3:
-                    return 2;
+                    indexRaza = 2;
                     break;
                 case 4:
-                    return 3;
+                    indexRaza = 3;
                     break;
             }
-            return 0;
         }
-        static void Estadisticas(string clase, int vida, float daño, float dañoMagico)
+        static void Estadisticas(ref string clase,ref int vida,ref float daño,ref float dañoMagico)
         {
             switch (clase)
             {
