@@ -1,0 +1,15 @@
+C:\Users\noggo\Documents\GitHub\ClasesC-\ConsoleApp1\ConsoleApp2\bin\Debug\net6.0\Clase2.exe
+C:\Users\noggo\Documents\GitHub\ClasesC-\ConsoleApp1\ConsoleApp2\bin\Debug\net6.0\Clase2.deps.json
+C:\Users\noggo\Documents\GitHub\ClasesC-\ConsoleApp1\ConsoleApp2\bin\Debug\net6.0\Clase2.runtimeconfig.json
+C:\Users\noggo\Documents\GitHub\ClasesC-\ConsoleApp1\ConsoleApp2\bin\Debug\net6.0\Clase2.dll
+C:\Users\noggo\Documents\GitHub\ClasesC-\ConsoleApp1\ConsoleApp2\bin\Debug\net6.0\ref\Clase2.dll
+C:\Users\noggo\Documents\GitHub\ClasesC-\ConsoleApp1\ConsoleApp2\bin\Debug\net6.0\Clase2.pdb
+C:\Users\noggo\Documents\GitHub\ClasesC-\ConsoleApp1\ConsoleApp2\obj\Debug\net6.0\Clase2.csproj.AssemblyReference.cache
+C:\Users\noggo\Documents\GitHub\ClasesC-\ConsoleApp1\ConsoleApp2\obj\Debug\net6.0\Clase2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\noggo\Documents\GitHub\ClasesC-\ConsoleApp1\ConsoleApp2\obj\Debug\net6.0\Clase2.AssemblyInfoInputs.cache
+C:\Users\noggo\Documents\GitHub\ClasesC-\ConsoleApp1\ConsoleApp2\obj\Debug\net6.0\Clase2.AssemblyInfo.cs
+C:\Users\noggo\Documents\GitHub\ClasesC-\ConsoleApp1\ConsoleApp2\obj\Debug\net6.0\Clase2.csproj.CoreCompileInputs.cache
+C:\Users\noggo\Documents\GitHub\ClasesC-\ConsoleApp1\ConsoleApp2\obj\Debug\net6.0\Clase2.dll
+C:\Users\noggo\Documents\GitHub\ClasesC-\ConsoleApp1\ConsoleApp2\obj\Debug\net6.0\ref\Clase2.dll
+C:\Users\noggo\Documents\GitHub\ClasesC-\ConsoleApp1\ConsoleApp2\obj\Debug\net6.0\Clase2.pdb
+C:\Users\noggo\Documents\GitHub\ClasesC-\ConsoleApp1\ConsoleApp2\obj\Debug\net6.0\Clase2.genruntimeconfig.cache
