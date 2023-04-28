@@ -22,18 +22,20 @@ namespace MyApp // Note: actual namespace depends on the project name.
             //nivel
             int cuarto = 0;
             int mirarCuarto = -1;
+            int deficultad = 2;
             //int objActual
 
             int indexRaza = 0;
-            //entiendo que la mayoría de arrays se pueden poner en su respectiva funcion
-            string[] clase = new string[] { "Mago", "Luchador", "Elfo", "Enano" }; ;
-            string[] eventos = new string[] { "Te encuentras una caja queres ver el contenido Y/N", "una serpiente sale de la caja y te lastima -10 de vida", "encontraste un libro de experiencia + 15exp" };
-            int[] resultados = new int[] { 0, -10, 15, 0 };
+            string[] clase = new string[] { "Mago", "Luchador", "Elfo", "Enano" };
+            string[] enemigos = new string[] { "duende", "elfoOscuro", "minotauro", "gargola" };
+            string[] eventos = new string[] { "Te encuentras una caja queres ver el contenido Y/N", "una serpiente sale de la caja y te lastima -10 de vida", "encontraste un libro de experiencia + 15exp", "Te encontrás con un cuadro enorme, al acercarte ves que detrás hay una palanca. ¿Tirás de ella? [Y/N]", "Al bajar la palanca se abre una puerta secreta detrás tuyo. ¡Hay un enemigo!", "Al bajar la palanca se abre una puerta secreta detrás tuyo. ¡Hay un pollo rostizado! Al comerlo recuperas toda tu vida." };
+            //                                 X           X  estos ceros no se que hacen
+            int[] resultados = new int[] {/*1*/0, -10, 15, 0, /*2*/0, vidaMax, 0, 0, /*3*/0, 0, 0, 0 };
 
-
+            //System.Threading.Thread.Sleep(5000);
             Bienvenida(ref nombre);
-            RegistroClase(ref indexRaza, ref clase);
-            Estadisticas(ref clase[indexRaza], ref fuerza, ref inteligencia, ref vidaMax);
+            RegistroClase(ref indexRaza, ref clase, ref vidaAct, ref vidaMax);
+            Estadisticas(ref clase[indexRaza], ref fuerza, ref inteligencia, ref vidaMax, ref vidaAct);
             Console.WriteLine("exp actual: " + expAct);
             Console.WriteLine("nivel: " + lvl);
             Console.WriteLine("exp necesaria: " + expNecesaria);
@@ -52,10 +54,16 @@ namespace MyApp // Note: actual namespace depends on the project name.
                         ComandosList();
                         break;
                     case "mirar":
-                        //Mirar(ref objetos, ref vidaAct, ref expAct, ref vidaMax,);
+                        Mirar(ref vidaAct, ref vidaMax, ref expAct, ref expNecesaria, ref lvl, ref eventos, ref resultados);
                         break;
                     case "avanzar":
                         Avanzar(ref cuarto);
+                        Random eve = new Random();
+                        int eveInt = eve.Next(0, deficultad);
+                        if(eveInt == 0)
+                        {
+                            //Encuentro(ref enemigos);
+                        }
                         break;
                     case "estado":
                         VerEstadisticas(ref nombre, ref fuerza, ref inteligencia, ref vidaMax, ref vidaAct, ref expNecesaria, ref expAct, ref lvl, ref clase, ref indexRaza, ref cuarto);
@@ -72,8 +80,22 @@ namespace MyApp // Note: actual namespace depends on the project name.
             //GanarExp(ref expAct, ref lvl, ref expNecesaria);
         }
         //
+        static void ComandosList()
+        {
+            Console.Clear();
+            Console.WriteLine("");
+            Console.WriteLine("Lista de comandos:");
+            Console.WriteLine("         - quit: Salir del juego");
+            Console.WriteLine("         - estadisticas: muestra todas las estadisticas");
+            Console.WriteLine("         - mirar: mira la habitacion");
+            Console.WriteLine("         - avanzar: cambia de sala");
+            Console.WriteLine("         - estado: muestra las estadisticas");
+            Console.WriteLine("");
+
+        }
         static void VerEstadisticas(ref string nombre, ref float fuerza, ref float inteligencia, ref int vidaMax, ref int vidaAct, ref int expNecesaria, ref int expAct, ref int lvl, ref string[] clase, ref int indexRaza, ref int cuarto)
         {
+            Console.Clear();
             Console.WriteLine("");
             Console.WriteLine("Nombre: " + nombre);
             Console.WriteLine("Clase: " + clase[indexRaza]);
@@ -86,21 +108,24 @@ namespace MyApp // Note: actual namespace depends on the project name.
         }
         static void Avanzar(ref int cuarto)
         {
+            Console.Clear();
             Console.WriteLine("");
             Console.WriteLine("Avanzas al siguiente cuarto");
             cuarto++;
 
             Console.WriteLine("");
         }
+
         static void Mirar(ref int vidaAct, ref int vidaMax, ref int expAct, ref int expNecesaria, ref int lvl, ref string[] eventos, ref int[] resultados)
         {
+            //no entiendo como funciona este código
             Random eve = new Random();
-            //el -1 al final hacía que no funcione el codigo
-            int objInt = eve.Next(0, eventos.Length / 3);
-            int actualEvent = objInt * 3;
+            int eveInt = eve.Next(0, eventos.Length / 3);
+            int actualEvent = eveInt * 3;
             int indexRe = 0;
-            if (objInt > 0)
-                indexRe = 4 * objInt;
+            if (eveInt > 0)
+                indexRe = 4 * eveInt;
+            //
 
             bool subMenu = true;
 
@@ -109,50 +134,58 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 string com;
                 Console.WriteLine(eventos[actualEvent] + "\n");
                 com = Console.ReadLine();
-                if (com == "Y")
+                if (com == "Y" || com == "y" || com == "N" || com == "n")
                 {
-                    Console.WriteLine(eventos[actualEvent + 1]);
-                    Eventos(ref vidaAct, ref vidaMax, ref expAct, ref expNecesaria, ref lvl, resultados[indexRe], resultados[indexRe + 1]);
-                    subMenu = false;
-                }
-                else if (com == "N")
-                {
-                    Console.WriteLine(eventos[actualEvent + 2]);
-                    Eventos(ref vidaAct, ref vidaMax, ref expAct, ref expNecesaria, ref lvl, resultados[indexRe + 2], resultados[indexRe + 3]);
-                    subMenu = false;
+                    Random ev = new Random();
+                    int resIndex = ev.Next(0, 1);
+                    if(resIndex == 0)
+                    {
+                        Console.WriteLine(eventos[actualEvent + 1]);
+                        Eventos(ref vidaAct, ref vidaMax, ref expAct, ref expNecesaria, ref lvl, resultados[indexRe], resultados[indexRe + 1], actualEvent, eventos);
+                        subMenu = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine(eventos[actualEvent + 2]);
+                        Eventos(ref vidaAct, ref vidaMax, ref expAct, ref expNecesaria, ref lvl, resultados[indexRe + 2], resultados[indexRe + 3], actualEvent, eventos);
+                        subMenu = false;
+                    } 
                 }
                 else
                     Console.WriteLine("Error: ingrese Y/N");
-
             }
 
         }
-        static void Eventos(ref int vidaAct, ref int vidaMax, ref int expAct, ref int expNecesaria, ref int lvl, int expChange, int vidaChange)
-        {
+        static void Eventos(ref int vidaAct, ref int vidaMax, ref int expAct, ref int expNecesaria, ref int lvl, int expChange, int vidaChange, int actualEvent, string[] eventos)
+        {             
             if (expChange > 0)
             {
                 GanarExp(ref expAct, ref lvl, ref expNecesaria, expChange);
             }
             if (vidaChange > 0)
             {
-
+                GanarVida(ref vidaMax, ref vidaAct, vidaChange);
             }
         }
-        static void ComandosList()
+        static void GanarVida(ref int vidaMax, ref int vidaAct, int vidaChange)
         {
-            Console.WriteLine("");
-            Console.WriteLine("Lista de comandos:");
-            Console.WriteLine("         - quit: Salir del juego");
-            Console.WriteLine("         - estadisticas: muestra todas las estadisticas");
-            Console.WriteLine("         - mirar: mira la habitacion");
-            Console.WriteLine("         - avanzar: cambia de sala");
-            Console.WriteLine("         - estado: muestra las estadisticas");
-            Console.WriteLine("");
+            if (vidaChange > 0)
+            {
+                vidaAct += vidaChange;
+                if (vidaAct > vidaMax)
+                    vidaAct = vidaMax;
+            }
+            else if (vidaChange < 0)
+            {
+                vidaAct -= vidaChange;
+                if (vidaAct < 0)
+                    vidaAct = 0;
+            }
 
         }
-        static void GanarExp(ref int expAct, ref int lvl, ref int expNecesaria, int exp)
+        static void GanarExp(ref int expAct, ref int lvl, ref int expNecesaria, int expChange)
         {
-            expAct += exp;
+            expAct += expChange;
 
             if (expAct >= expNecesaria)
             {
@@ -184,7 +217,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
             Console.WriteLine("Encantado de conocerte, " + nombre);
             Console.WriteLine("");
         }
-        static void RegistroClase(ref int indexRaza, ref string[] clase)
+        static void RegistroClase(ref int indexRaza, ref string[] clase, ref int vidaAct, ref int vidaMax)
 
         {
             Console.WriteLine("");
@@ -205,19 +238,32 @@ namespace MyApp // Note: actual namespace depends on the project name.
             Console.WriteLine("Elegiste: " + clase[indexRaza]);
             Console.WriteLine("");
         }
-        static void Encuentro(ref string enemigos)
+        static void Encuentro(ref string[] enemigos, ref int vidaAct)
         {
-            switch (enemigos)
+            int vidaEnemigo = 0;
+            float ataque = 0;
+            float inteligencia = 0;
+            int exp = 0;
+            bool enemigoVivo = true;
+            Random ev = new Random();
+            int resIndex = ev.Next(0, enemigos.Length);
+            switch (enemigos[resIndex])
             {
                 case "esqueleto":
+
                     break;
                 case "no muerto":
                     break;
                 case "rata":
                     break;
             }
+            
+            while (enemigoVivo || vidaAct >= 0)
+            {
+
+            }
         }
-        static void Estadisticas(ref string clase, ref float fuerza, ref float inteligencia, ref int vidaMax)
+        static void Estadisticas(ref string clase, ref float fuerza, ref float inteligencia, ref int vidaMax, ref int vidaActual)
         {
             switch (clase)
             {
@@ -241,8 +287,8 @@ namespace MyApp // Note: actual namespace depends on the project name.
                     fuerza = 150;
                     inteligencia = 0;
                     break;
-
             }
+            vidaActual = vidaMax;
             Console.WriteLine("");
             Console.WriteLine("Vida: " + vidaMax);
             Console.WriteLine("Fuerza: " + fuerza);
